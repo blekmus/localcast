@@ -3,6 +3,13 @@
   <p align="center">A Go powered frontend for <a href="https://github.com/gpodder/gpodder" target="_blank">gPodder</a> podcast downloads</p>
 </p>
 
+<br>
+<br>
+
+## About
+
+Localcast checks locally downloaded podcast files from gPodder and serves them on the browser. This makes it easier to browse and listen them.
+
 ## Previews
 
 ![image](https://user-images.githubusercontent.com/47277246/215434469-338b5533-85d7-4e3d-82be-a230113f004f.png)
