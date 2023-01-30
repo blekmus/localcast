@@ -14,6 +14,25 @@
       rel="stylesheet"
     />
 
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/public/assets/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/public/assets/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/public/assets/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/public/assets/site.webmanifest" />
+
     <style>
       .podcast .header::before {
         background-image: url("/podcast/{{ .podcast.ID }}/cover");
@@ -355,8 +374,10 @@
         <div class="info">
           <h1 class="title">{{ .podcast.Title }}</h1>
           <h2 class="highlight">
-            {{ .episodeCount }} Episodes<span>|</span>Last Updated {{ $.lastUpdated }}<span>|</span><a href="{{ .podcast.Website }}">Website</a
-            ><span>|</span><a href="{{ .podcast.Feed }}">Feed</a>
+            {{ .episodeCount }} Episodes<span>|</span>Last Updated {{
+            $.lastUpdated }}<span>|</span
+            ><a href="{{ .podcast.Website }}">Website</a><span>|</span
+            ><a href="{{ .podcast.Feed }}">Feed</a>
           </h2>
           <div class="desc" id="min_desc">
             {{ .shortDescription }} {{ if .moreStatus }}
@@ -379,12 +400,15 @@
         {{ range $episode := .episodes }}
         <div class="ep">
           <h1 class="title">{{ $episode.Title }}</h1>
-          <h2 class="highlight">{{ $episode.DateString }}<span>|</span
+          <h2 class="highlight">
+            {{ $episode.DateString }}<span>|</span
             ><button id="desc">Description</button><span>|</span
             ><a href="{{ $episode.Source }}">Source</a>
           </h2>
 
-          <div class="desc" style="display: none">{{ $episode.DescriptionHtml }}</div>
+          <div class="desc" style="display: none">
+            {{ $episode.DescriptionHtml }}
+          </div>
           <div class="player">
             <audio controls>
               <source

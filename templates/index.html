@@ -13,6 +13,11 @@
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+Display:wght@600&family=Noto+Sans:wght@400;500&display=swap"
       rel="stylesheet"
     />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/public/assets/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/public/assets/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/public/assets/favicon-16x16.png" />
+    <link rel="manifest" href="/public/assets/site.webmanifest" />
   </head>
   <body class="home">
     <div class="header">
@@ -333,16 +338,16 @@
 
     <div class="content">
       {{ range $podcast := .podcasts }}
-        <a class="item" href="/podcast/{{ $podcast.ID }}">
-          <div class="cover">
-            <img
-              src="/podcast/{{ $podcast.ID }}/cover"
-              alt="{{ $podcast.Title }} cover img"
-            />
-          </div>
-          <h1 class="title">{{ $podcast.Title }}</h1>
-        </a>
-      {{ end }}   
+      <a class="item" href="/podcast/{{ $podcast.ID }}">
+        <div class="cover">
+          <img
+            src="/podcast/{{ $podcast.ID }}/cover"
+            alt="{{ $podcast.Title }} cover img"
+          />
+        </div>
+        <h1 class="title">{{ $podcast.Title }}</h1>
+      </a>
+      {{ end }}
     </div>
   </body>
 </html>

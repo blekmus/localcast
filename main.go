@@ -5,6 +5,7 @@ import (
 	"flag"
 	"fmt"
 	"html/template"
+	"io/fs"
 	"net/http"
 	"os"
 	"strconv"
@@ -175,6 +176,14 @@ func podcastPage(context *gin.Context) {
 	})
 }
 
+func FaviconFS() http.FileSystem {
+	sub, err := fs.Sub(embeddedFiles, "./assets/favicon.ico")
+	if err != nil {
+		panic(err)
+	}
+	return http.FS(sub)
+}
+
 func setupRouter(path string) *gin.Engine {
 	router := gin.Default()
 	
@@ -197,6 +206,11 @@ func setupRouter(path string) *gin.Engine {
 	router.GET("/podcast/:podcast/cover", podcastCover)
 	router.GET("/episode/:episode/audio", episodeAudio)
 
+	// server favicon under root
+	router.GET("/favicon.ico", func(context *gin.Context) {
+		context.FileFromFS(".", FaviconFS())
+	})
+
 	fmt.Println("Server running on localhost:3000")
 
 	return router
@@ -204,6 +218,7 @@ func setupRouter(path string) *gin.Engine {
 
 func main() {
 	var path = flag.String("path", "", "gpodder directory path")
+	var port = flag.String("port", "3000", "port to run server on")
 	flag.Parse()
 
 	if *path == "" {
@@ -217,5 +232,6 @@ func main() {
 	models.ConnectDatabase(fmt.Sprint(*path, "/Database"))
 
 	router := setupRouter(*path)
-	router.Run(":3000")
+
+	router.Run(":" + *port)
 }
