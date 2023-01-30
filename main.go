@@ -217,12 +217,12 @@ func setupRouter(path string) *gin.Engine {
 }
 
 func main() {
-	var path = flag.String("path", "", "gpodder directory path")
+	var path = flag.String("path", "", "gPodder directory path")
 	var port = flag.String("port", "3000", "port to run server on")
 	flag.Parse()
 
 	if *path == "" {
-		fmt.Println("Please specify a database file path")
+		fmt.Println("Please specify the path to gPodder directory")
 		os.Exit(1)
 	}
 
