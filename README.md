@@ -8,7 +8,9 @@
 
 ## About
 
-Localcast checks locally downloaded podcast files from gPodder and serves them on the browser. This makes it easier to browse and listen them.
+Localcast checks locally downloaded podcast files from gPodder and serves them on the browser. This makes it easier to browse and listen them. 
+
+The server is powered by Gin with SSR html pages. The data is extracted from gPodder's sqlite database. No network requests are made site-wide because this is meant to index archived/downloaded files only.
 
 ## Previews
 
