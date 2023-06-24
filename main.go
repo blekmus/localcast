@@ -177,14 +177,14 @@ func podcastPage(context *gin.Context) {
 }
 
 func FaviconFS() http.FileSystem {
-	sub, err := fs.Sub(embeddedFiles, "./assets/favicon.ico")
+	sub, err := fs.Sub(embeddedFiles, "assets/favicon.ico")
 	if err != nil {
 		panic(err)
 	}
 	return http.FS(sub)
 }
 
-func setupRouter(path string) *gin.Engine {
+func setupRouter(path string, port string) *gin.Engine {
 	router := gin.Default()
 	
 	// set path to router
@@ -211,7 +211,8 @@ func setupRouter(path string) *gin.Engine {
 		context.FileFromFS(".", FaviconFS())
 	})
 
-	fmt.Println("Server running on localhost:3000")
+	startLog := fmt.Sprintf("Server running on localhost:%s", port)
+	fmt.Println(startLog)
 
 	return router
 }
@@ -231,7 +232,7 @@ func main() {
 	// connect to database
 	models.ConnectDatabase(fmt.Sprint(*path, "/Database"))
 
-	router := setupRouter(*path)
+	router := setupRouter(*path, *port)
 
 	router.Run(":" + *port)
 }
